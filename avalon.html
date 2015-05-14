@@ -12,7 +12,7 @@
     <form class="form-login" role="form">
         <h2 class="form-login-heading">Avalon</h2>
         <input type="text" class="form-control form-control-name" placeholder="Name" id="name" required autofocus>
-        <input type="text" class="form-control form-control-group" placeholder="Group" id="group" required>
+        <input type="text" class="form-control form-control-group" placeholder="Group" id="group">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Play</button>
 	<br/>
 	<div class="alert alert-danger hidden" id="alert">Someone with that name is already playing.</div>
@@ -119,7 +119,7 @@ You are a loyal servant of Arthur.
 You are the great wizard Merlin. <br/>
 The following are the minions of Modred:
 <ul>
-{{#each known}}
+{{#each this}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
@@ -128,7 +128,7 @@ The following are the minions of Modred:
 You are Percival. <br/>
 Merlin is one of the following:
 <ul>
-{{#each known}}
+{{#each this}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
@@ -146,7 +146,7 @@ The following are the other minions of Modred:
 You are the assassin and a minion of Mordred. <br/>
 The following are the other minions of Modred:
 <ul>
-{{#each known}}
+{{#each this}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
@@ -155,7 +155,7 @@ The following are the other minions of Modred:
 You are the dark lord Mordred. <br/>
 The following are your minions:
 <ul>
-{{#each known}}
+{{#each this}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
@@ -164,7 +164,7 @@ The following are your minions:
 You are the evil witch Morgana. <br/>
 The following are the other minions of Modred:
 <ul>
-{{#each known}}
+{{#each this}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
