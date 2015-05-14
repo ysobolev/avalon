@@ -1,0 +1,175 @@
+<head>
+<title>Avalon</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+{{> UI.dynamic template=state}}
+</body>
+
+<template name="login">
+<div class="container fill-height">
+    <form class="form-login" role="form">
+        <h2 class="form-login-heading">Avalon</h2>
+        <input type="text" class="form-control form-control-name" placeholder="Name" id="name" required autofocus>
+        <input type="text" class="form-control form-control-group" placeholder="Group" id="group" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Play</button>
+	<br/>
+	<div class="alert alert-danger hidden" id="alert">Someone with that name is already playing.</div>
+    </form>
+    <footer class="footer text-muted">Avalon v.0.1.0 | <a href="https://github.com/ysobolev">Source</a></footer>
+</div>
+</template>
+
+<template name="players">
+<div class="container">
+    <div class="div-players">
+    <div class="panel-group">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            Players
+        </h4>
+    </div>
+    <div class="panel-body">
+        <ul>
+            {{#each members}}
+            <li>{{name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading panel-link">
+        <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapse" class="accordion-toggle collapsed">Start</a>
+        </h4>
+    </div>
+    <div id="collapse" class="panel-collapse collapse">
+    <div class="panel-body">
+    The game will have the following roles:
+    <dl>
+    <dt>
+        <div class="checkbox">
+                <label><input type="checkbox" id="merlin" checked={{merlin}}> <b>Merlin</b></label>
+        </div>
+    </dt>
+    <dd>Merlin is a loyal servant of Arthur. Knows the minions of Modred, but not Modred. Additionally, one of the minions will be an assassin. If the assassin figures out who Merlin is, the forces of evil win.</dd>
+    <dt>
+        <div class="checkbox">
+                <label><input type="checkbox" id="percival" checked={{percival}}> <b>Percival</b></label>
+        </div>
+    </dt>
+    <dd>Percival is a loyal servant of Arthur. Knows who Merlin is, but if Morgana is playing, he cannot tell them apart.</dd>
+    <dt>
+        <div class="checkbox">
+                <label><input type="checkbox" id="mordred" checked={{mordred}}> <b>Mordred</b></label>
+        </div>
+    </dt>
+    <dd>The evil lord Mordred's identity is not known to Merlin.</dd>
+    <dt>
+        <div class="checkbox">
+                <label><input type="checkbox" id="morgana" checked={{morgana}}> <b>Morgana</b></label>
+        </div>
+    </dt>
+    <dd>Morgana is a minion of Mordred. Morgana appears to be Merlin to Percival.</dd>
+    <dt>
+        <div class="checkbox">
+                <label><input type="checkbox" id="oberon" checked={{oberon}}> <b>Oberon</b></label>
+        </div>
+    </dt>
+    <dd>While a force for evil, Oberon is not known to Mordred or his minions. Oberson appears to be an ordinary minion to Merlin.</dd>
+    </dl>
+    {{#if tooMany}}
+    <button class="btn btn-lg btn-primary btn-block disabled" type="button">Too many players</button>
+    {{else}}
+    {{#if tooFew}}
+    <button class="btn btn-lg btn-primary btn-block disabled" type="button">Not enough players</button>
+    {{else}}
+    {{#if tooEvil}}
+    <button class="btn btn-lg btn-primary btn-block disabled" type="button">Too many evil roles</button>
+    {{else}}
+    <button class="btn btn-lg btn-primary btn-block" type="button">Start with {{memberCount}} players</button>
+    {{/if}}
+    {{/if}}
+    {{/if}}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+</template>
+
+<template name="identity">
+<div class="container">
+<div class="div-identity">
+    {{> UI.dynamic template=role data=known}}
+    <br/>
+    <br/>
+    <button class="btn btn-primary" type="button">Play again</button>
+    </div>
+</div>
+</template>
+
+<template name="knight">
+You are a loyal servant of Arthur.
+</template>
+<template name="merlin">
+You are the great wizard Merlin. <br/>
+The following are the minions of Modred:
+<ul>
+{{#each known}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="percival">
+You are Percival. <br/>
+Merlin is one of the following:
+<ul>
+{{#each known}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="minion">
+You are a minion of Mordred. <br/>
+The following are the other minions of Modred:
+<ul>
+{{#each this}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="assassin">
+You are the assassin and a minion of Mordred. <br/>
+The following are the other minions of Modred:
+<ul>
+{{#each known}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="mordred">
+You are the dark lord Mordred. <br/>
+The following are your minions:
+<ul>
+{{#each known}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="morgana">
+You are the evil witch Morgana. <br/>
+The following are the other minions of Modred:
+<ul>
+{{#each known}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+</template>
+<template name="oberon">
+You are the evil force Oberon.
+</template>
+
