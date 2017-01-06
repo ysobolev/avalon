@@ -23,7 +23,7 @@ export default class LoginScreen extends Component {
       	  />
       	  <button
       	    className="btn btn-lg btn-primary btn-block"
-      	    type="submit">
+      	    onClick={this.props.login}>
       	    Play
       	  </button>
 	        <br />
@@ -42,3 +42,7 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+LoginScreen.propTypes = {
+  login: React.PropTypes.func
+};

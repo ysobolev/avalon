@@ -10,6 +10,7 @@ module.exports = {
       "import/core-modules": [
         "meteor",
 	"meteor/meteor",
+	"meteor/mongo",
 	"meteor/react-meteor-data"
       ]
     }

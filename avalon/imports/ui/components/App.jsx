@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import LoginScreen from './LoginScreen.jsx';
+import SettingsScreen from './SettingsScreen.jsx';
+
 
 
 export default class App extends Component {
+  login() {
+    console.log("login");
+  }
+
   render() {
-    if (this.props.active) {
-      return (<div>Active game</div>);
+    if (!this.props.game) {
+      return (
+        <LoginScreen login={this.login} />
+      );
     }
-    return (
-      <LoginScreen />
-    );
+    const game = this.props.game;
+    if (game.round === 0) {
+      return (
+        <SettingsScreen />
+      );
+    } else {
+      return (
+        <MainScreen game={this.props.game} />
+      );
+    }
   }
 }
