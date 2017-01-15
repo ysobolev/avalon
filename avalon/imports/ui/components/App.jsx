@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import LoginScreen from './LoginScreen.jsx';
 import SettingsScreen from './SettingsScreen.jsx';
-
+import MainScreen from './MainScreen.jsx';
 
 
 export default class App extends Component {
-  login() {
-    console.log("login");
-  }
-
   render() {
     if (!this.props.game) {
       return (
-        <LoginScreen login={this.login} />
+        <LoginScreen login={this.props.api.login} />
       );
     }
     const game = this.props.game;

@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import '../stylesheets/login.css';
 
 export default class LoginScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {username: '', group: ''};
+    this.login = this.login.bind(this);
+    this.handleUsername = this.handleUsername.bind(this);
+    this.handleGroup = this.handleGroup.bind(this);
+  }
+
+  handleUsername(event) {
+    this.setState({username: event.target.value});
+  }
+
+  handleGroup(event) {
+    this.setState({group: event.target.value});
+  }
+
+  login(event) {
+    //event.preventDefault();
+
+    this.props.login(this.state.username, this.state.group);
+  }
+
   render() {
     return (
       <div className="container fill-height">
@@ -11,7 +33,8 @@ export default class LoginScreen extends Component {
 	          type="text"
 	          className="form-control form-control-name"
 	          placeholder="Name"
-	          id="name"
+            value={this.state.username}
+            onChange={this.handleUsername}
 	          required
 	          autoFocus
 	        />
@@ -19,11 +42,12 @@ export default class LoginScreen extends Component {
       	    type="text"
       	    className="form-control form-control-group"
       	    placeholder="Group"
-      	    id="group"
+            value={this.state.group}
+            onChange={this.handleGroup}
       	  />
       	  <button
       	    className="btn btn-lg btn-primary btn-block"
-      	    onClick={this.props.login}>
+      	    onClick={this.login}>
       	    Play
       	  </button>
 	        <br />

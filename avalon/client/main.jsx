@@ -1,11 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { mount } from 'react-mounter';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../imports/ui/stylesheets/app.css';
 import AppContainer from '../imports/ui/containers/AppContainer';
 
-Meteor.startup(() => {
-  render(<AppContainer params={{id: '1'}}/>, document.getElementById('render-target'));
+FlowRouter.route('/', {
+  action() {
+    mount(AppContainer);
+  }
 });

@@ -1,9 +1,14 @@
+html {
+  height: 100%;
+}
+
 body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
+  height: 100%;
 }
 
-#render-target {
+#react-root {
   height: 100%;
 }
